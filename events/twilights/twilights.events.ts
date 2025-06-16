@@ -134,10 +134,9 @@ export function writeTwilightEvents(args: {
 
   upsertEvents(twilightEvents);
 
-  const filename = `twilights_${timespan}`;
   const ingressCalendar = getCalendar(twilightEvents, "Twilights 🌠");
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/twilight_${timespan}.ics`,
     new TextEncoder().encode(ingressCalendar)
   );
 

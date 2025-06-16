@@ -143,13 +143,12 @@ export function writeMajorAspectEvents(args: {
   upsertEvents(majorAspectEvents);
 
   const majorAspectBodiesString = majorAspectBodies.join(",");
-  const filename = `major-aspects_${majorAspectBodiesString}_${timespan}`;
   const majorAspectsCalendar = getCalendar(
     majorAspectEvents,
     "Major Aspects 📐"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/major-aspects_${majorAspectBodiesString}_${timespan}.ics`,
     new TextEncoder().encode(majorAspectsCalendar)
   );
 

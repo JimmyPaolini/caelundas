@@ -109,13 +109,12 @@ export function writeDailyLunarCycleEvents(args: {
 
   upsertEvents(dailyLunarCycleEvents);
 
-  const filename = `daily-lunar-cycle_${timespan}`;
   const ingressCalendar = getCalendar(
     dailyLunarCycleEvents,
     "Daily Lunar Cycle 🌙"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/daily-lunar-cycle_${timespan}.ics`,
     new TextEncoder().encode(ingressCalendar)
   );
 

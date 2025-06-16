@@ -348,13 +348,12 @@ export function writeAnnualSolarCycleEvents(args: {
 
   upsertEvents(annualSolarCycleEvents);
 
-  const filename = `annual-solar-cycle_${timespan}`;
   const ingressCalendar = getCalendar(
     annualSolarCycleEvents,
     "Annual Solar Cycle 📏"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/annual-solar-cycle_${timespan}.ics`,
     new TextEncoder().encode(ingressCalendar)
   );
 

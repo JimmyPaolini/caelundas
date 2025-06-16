@@ -148,13 +148,12 @@ export function writeSpecialtyAspectEvents(args: {
   upsertEvents(specialtyAspectEvents);
 
   const specialtyAspectBodiesString = specialtyAspectBodies.join(",");
-  const filename = `specialty-aspects_${specialtyAspectBodiesString}_${timespan}`;
   const specialtyAspectsCalendar = getCalendar(
     specialtyAspectEvents,
     "Specialty Aspects 🧮"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/specialty-aspects_${specialtyAspectBodiesString}_${timespan}.ics`,
     new TextEncoder().encode(specialtyAspectsCalendar)
   );
 

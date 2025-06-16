@@ -88,13 +88,12 @@ export function writeMonthlyLunarCycleEvents(args: {
 
   upsertEvents(monthlyLunarCycleEvents);
 
-  const filename = `monthly-lunar-cycle_${timespan}`;
   const ingressCalendar = getCalendar(
     monthlyLunarCycleEvents,
     "Monthly Lunar Cycle 🌒"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/monthly-lunar-cycle_${timespan}.ics`,
     new TextEncoder().encode(ingressCalendar)
   );
 

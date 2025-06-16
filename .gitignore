@@ -1,2 +1,3 @@
 database.db
-calendars/!.gitkeep
+calendars/*
+!calendars/.gitkeep

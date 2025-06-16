@@ -111,13 +111,12 @@ export function writeDailySolarCycleEvents(args: {
 
   upsertEvents(dailySolarCycleEvents);
 
-  const filename = `daily-sun-cycle_${timespan}`;
   const ingressCalendar = getCalendar(
     dailySolarCycleEvents,
     "Daily Sun Cycle ☀️"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/daily-solar-cycle_${timespan}.ics`,
     new TextEncoder().encode(ingressCalendar)
   );
 

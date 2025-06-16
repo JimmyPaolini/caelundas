@@ -281,7 +281,5 @@ export async function getChoices() {
     start,
   };
 
-  // console.debug(`🤔 Received choices:`, choices);
-
   return choices;
 }

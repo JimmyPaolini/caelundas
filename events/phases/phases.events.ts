@@ -1,7 +1,11 @@
 import _ from "npm:lodash";
 import moment from "npm:moment-timezone";
 import type { Moment } from "npm:moment";
-import { type EventTemplate, type Event, getCalendar } from "../../calendar.utilities.ts";
+import {
+  type EventTemplate,
+  type Event,
+  getCalendar,
+} from "../../calendar.utilities.ts";
 import {
   symbolByMartianPhase,
   symbolByMercurianPhase,
@@ -695,13 +699,12 @@ export function writePlanetaryPhaseEvents(args: {
   upsertEvents(planetaryPhaseEvents);
 
   const planetaryPhaseBodiesString = planetaryPhaseBodies.join(",");
-  const filename = `planetary_phases_${planetaryPhaseBodiesString}_${timespan}`;
   const planetaryPhasesCalendar = getCalendar(
     planetaryPhaseEvents,
     "Planetary Phases 🌓"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/planetary_phases_${planetaryPhaseBodiesString}_${timespan}.ics`,
     new TextEncoder().encode(planetaryPhasesCalendar)
   );
 

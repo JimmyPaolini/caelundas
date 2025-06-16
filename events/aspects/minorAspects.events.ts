@@ -144,13 +144,12 @@ export function writeMinorAspectEvents(args: {
   upsertEvents(minorAspectEvents);
 
   const minorAspectBodiesString = minorAspectBodies.join(",");
-  const filename = `minor-aspects_${minorAspectBodiesString}_${timespan}`;
   const minorAspectsCalendar = getCalendar(
     minorAspectEvents,
     "Minor Aspects 🖇️"
   );
   Deno.writeFileSync(
-    `./calendars/${filename}.ics`,
+    `./calendars/minor-aspects_${minorAspectBodiesString}_${timespan}.ics`,
     new TextEncoder().encode(minorAspectsCalendar)
   );
 

@@ -71,6 +71,9 @@ export const MARGIN_MINUTES = 30;
 if (import.meta.main) {
   // #region 🤔 Choices
   const choices = await getChoices();
+
+  console.info(`🤔 Input choices:`, JSON.stringify(choices));
+
   const {
     end,
     eventTypes,
@@ -87,7 +90,6 @@ if (import.meta.main) {
     start,
   } = choices;
 
-  // 🛣️
   const ephemerisBodies = shouldGetEphemeris({
     eventTypes,
     signIngressBodies,
@@ -349,6 +351,8 @@ if (import.meta.main) {
 
     console.log(`⏳ Processed day ${currentDayLabel}`);
   }
+
+  console.info(`🔭 Caelundas from choices:`, JSON.stringify(choices));
 
   Deno.exit();
 }

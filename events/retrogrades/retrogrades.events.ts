@@ -133,10 +133,10 @@ export function writeRetrogradeEvents(args: {
   upsertEvents(retrogradeEvents);
 
   const retrogradeBodiesString = retrogradeBodies.join(", ");
-  const filename = `retrogrades_${retrogradeBodiesString}_${timespan}`;
+  const retrogradesCalendar = getCalendar(retrogradeEvents, "Retrogrades ↩️");
   Deno.writeFileSync(
-    `./calendars/${filename}.json`,
-    new TextEncoder().encode(JSON.stringify(retrogradeEvents, null, 2))
+    `./calendars/retrogrades_${retrogradeBodiesString}_${timespan}.ics`,
+    new TextEncoder().encode(retrogradesCalendar)
   );
 
   console.log(`↩️ Wrote ${message}`);
