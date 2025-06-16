@@ -1,6 +1,5 @@
 {
   "tasks": {
-    "run": "deno run --allow-all --unstable-fs main.ts",
-    "ingest": "deno run --allow-all --unstable-fs database.ingestion.ts"
+    "run": "deno run --allow-all --unstable-fs main.ts"
   }
 }

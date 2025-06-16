@@ -23,7 +23,6 @@ export function getHorizonsBaseUrl(args: {
   const { start, end, coordinates } = args;
 
   const url = new URL(horizonsUrl);
-  // url.searchParams.append("api_key", horizonsApiKey);
 
   url.searchParams.append("format", "text");
   url.searchParams.append("MAKE_EPHEM", "YES");

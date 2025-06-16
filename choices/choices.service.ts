@@ -8,6 +8,7 @@ import type {
   AspectChoice,
   Choices,
   EventTypeChoice,
+  IngressChoice,
   PlanetaryPhaseBodyChoice,
 } from "./choices.types.ts";
 import { initialChoices } from "./choices.input.ts";
@@ -267,6 +268,7 @@ export async function getChoices() {
     decanIngressBodies,
     end,
     eventTypes,
+    ingresses,
     latitude,
     longitude,
     majorAspectBodies,

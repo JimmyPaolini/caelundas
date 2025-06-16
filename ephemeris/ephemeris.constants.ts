@@ -1,7 +1,6 @@
 import { Asteroid, Comet, Planet } from "../symbols.constants.ts";
 
 export const horizonsUrl = "https://ssd.jpl.nasa.gov/api/horizons.api";
-export const horizonsApiKey = "HWo7y9pmbpd4uCcXgdCZIOVS81C4tvct6epk86DP";
 
 export const dateRegex = /(\d{4}-[A-Za-z]{3}-\d{2}\s\d{2}:\d{2})/;
 export const decimalRegex = /(-?\d+\.\d+)/;
