@@ -13,6 +13,7 @@ import {
 } from "../../symbols.constants.ts";
 import { upsertEvents } from "../../database.utilities.ts";
 import { getMajorAspect, isMajorAspect } from "./aspects.utilities.ts";
+import { incrementEventsCount, print } from "../../logs.utils.tsx";
 
 type MajorAspectDescription =
   `${Capitalize<Body>} ${MajorAspect} ${Capitalize<Body>}`;
@@ -117,7 +118,8 @@ export function getMajorAspectEvent(args: {
     // @ts-ignore: it's ok that the type is complicated
     `${body1Symbol} ${majorAspectSymbol} ${body2Symbol} ${description}` as MajorAspectSummary;
 
-  console.log(`${summary} at ${timestamp.toISOString()}`);
+  print(`${summary} at ${timestamp.toISOString()}`);
+  incrementEventsCount();
 
   const majorAspectEvent: MajorAspectEvent = {
     start: timestamp,
@@ -138,7 +140,7 @@ export function writeMajorAspectEvents(args: {
 
   const timespan = `${start.toISOString()}-${end.toISOString()}`;
   const message = `${majorAspectEvents.length} major aspect events from ${timespan}`;
-  console.log(`📐 Writing ${message}`);
+  print(`📐 Writing ${message}`);
 
   upsertEvents(majorAspectEvents);
 
@@ -152,5 +154,5 @@ export function writeMajorAspectEvents(args: {
     new TextEncoder().encode(majorAspectsCalendar)
   );
 
-  console.log(`📐 Wrote ${message}`);
+  print(`📐 Wrote ${message}`);
 }

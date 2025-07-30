@@ -101,8 +101,6 @@ export function isBrightest(args: {
     currentBrightness > Math.max(...previousBrightnesses) &&
     currentBrightness >= Math.max(...nextBrightnesses);
 
-  isBrightest &&
-    console.log("Current brightness is the brightest:", currentBrightness);
   return isBrightest;
 }
 

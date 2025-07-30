@@ -10,6 +10,7 @@ import { MARGIN_MINUTES } from "../../main.ts";
 import { lunarPhases } from "../../symbols.constants.ts";
 import { isLunarPhase } from "./monthlyLunarCycle.utilities.ts";
 import { symbolByLunarPhase } from "../../symbols.constants.ts";
+import { incrementEventsCount, print } from "../../logs.utils.tsx";
 
 export function getMonthlyLunarCycleEvents(args: {
   currentMinute: Moment;
@@ -68,7 +69,8 @@ export function getMonthlyLunarCycleEvent(args: {
   const summary = `🌙 ${symbolByLunarPhase[lunarPhase]} ${description}`;
 
   const dateString = moment.tz(date, "America/New_York").toISOString(true);
-  console.log(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const monthlyLunarCycleEvent = { start: date, summary, description };
   return monthlyLunarCycleEvent;
@@ -84,7 +86,7 @@ export function writeMonthlyLunarCycleEvents(args: {
 
   const timespan = `${start.toISOString()}-${end.toISOString()}`;
   const message = `${monthlyLunarCycleEvents.length} monthly lunar cycle events from ${timespan}`;
-  console.log(`🌒 Writing ${message}`);
+  print(`🌒 Writing ${message}`);
 
   upsertEvents(monthlyLunarCycleEvents);
 
@@ -97,5 +99,5 @@ export function writeMonthlyLunarCycleEvents(args: {
     new TextEncoder().encode(ingressCalendar)
   );
 
-  console.log(`🌒 Wrote ${message}`);
+  print(`🌒 Wrote ${message}`);
 }

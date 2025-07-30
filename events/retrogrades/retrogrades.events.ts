@@ -1,6 +1,6 @@
 import _ from "npm:lodash";
 import type { Moment } from "npm:moment";
-import type { Event } from "../../calendar.utilities.ts";
+import { getCalendar, type Event } from "../../calendar.utilities.ts";
 import type { EventTemplate } from "../../calendar.utilities.ts";
 import type { CoordinateEphemeris } from "../../ephemeris/ephemeris.types.ts";
 import type {
@@ -16,6 +16,7 @@ import {
 import { MARGIN_MINUTES } from "../../main.ts";
 import { isDirect, isRetrograde } from "./retrogrades.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
+import { incrementEventsCount, print } from "../../logs.utils.tsx";
 
 type RetrogradeDescription =
   `${Capitalize<RetrogradeBody>} Stationary ${Capitalize<OrbitalDirection>}`;
@@ -106,7 +107,8 @@ export function getRetrogradeEvent(args: {
   const description: RetrogradeDescription = `${bodyCapitalized} Stationary ${orbitalDirectionCapitalized}`;
   const summary: RetrogradeSummary = `${retrogradeBodySymbol} ${orbitalDirectionSymbol} ${description}`;
 
-  console.log(`${summary} at ${timestamp.toISOString()}`);
+  print(`${summary} at ${timestamp.toISOString()}`);
+  incrementEventsCount();
 
   const retrogradeEvent: RetrogradeEvent = {
     start: timestamp,
@@ -128,7 +130,7 @@ export function writeRetrogradeEvents(args: {
 
   const timespan = `${start.toISOString()}-${end.toISOString()}`;
   const message = `${retrogradeEvents.length} retrograde events from ${timespan}`;
-  console.log(`↩️ Writing ${message}`);
+  print(`↩️ Writing ${message}`);
 
   upsertEvents(retrogradeEvents);
 
@@ -139,5 +141,5 @@ export function writeRetrogradeEvents(args: {
     new TextEncoder().encode(retrogradesCalendar)
   );
 
-  console.log(`↩️ Wrote ${message}`);
+  print(`↩️ Wrote ${message}`);
 }

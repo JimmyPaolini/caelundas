@@ -13,6 +13,7 @@ import {
 import { type Event, getCalendar } from "../../calendar.utilities.ts";
 import { getSpecialtyAspect, isSpecialtyAspect } from "./aspects.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
+import { incrementEventsCount, print } from "../../logs.utils.tsx";
 
 type SpecialtyAspectDescription =
   `${Capitalize<Body>} ${SpecialtyAspect} ${Capitalize<Body>}`;
@@ -122,7 +123,8 @@ export function getSpecialtyAspectEvent(args: {
     // @ts-ignore: it's ok that the type is complicated
     `${body1Symbol} ${specialtyAspectSymbol} ${body2Symbol} ${description}` as SpecialtyAspectSummary;
 
-  console.log(`${summary} at ${timestamp.toISOString()}`);
+  print(`${summary} at ${timestamp.toISOString()}`);
+  incrementEventsCount();
 
   const specialtyAspectEvent: SpecialtyAspectEvent = {
     start: timestamp,
@@ -143,7 +145,7 @@ export function writeSpecialtyAspectEvents(args: {
 
   const timespan = `${start.toISOString()}-${end.toISOString()}`;
   const message = `${specialtyAspectEvents.length} specialty aspect events from ${timespan}`;
-  console.log(`🧮 Writing ${message}`);
+  print(`🧮 Writing ${message}`);
 
   upsertEvents(specialtyAspectEvents);
 
@@ -157,5 +159,5 @@ export function writeSpecialtyAspectEvents(args: {
     new TextEncoder().encode(specialtyAspectsCalendar)
   );
 
-  console.log(`🧮 Wrote ${message}`);
+  print(`🧮 Wrote ${message}`);
 }

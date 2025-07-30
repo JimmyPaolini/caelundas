@@ -40,6 +40,7 @@ import {
   OrbitEphemeris,
 } from "./ephemeris.types.ts";
 import { normalizeDegrees } from "../math.utilities.ts";
+import { print } from "../logs.utils.tsx";
 
 // #region 💫 Orbit
 
@@ -72,15 +73,15 @@ export async function getOrbitEphemeris(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `orbit ephemeris 🎯 for ${symbolByBody[body]}`;
-  console.debug(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const url = getOrbitEphemerisUrl({ body, end, start });
-  // console.debug(`🌐 Orbit url:`, url.toString());
+  // print(`🌐 Orbit url:`, url.toString());
   const text = await fetch(url.toString()).then((res) => res.text());
-  // console.debug(`🏁 Orbit response:`, text);
+  // print(`🏁 Orbit response:`, text);
   const orbitEphemeris = parseOrbitEphemeris(text);
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return orbitEphemeris;
 }
@@ -164,15 +165,15 @@ export async function getCoordinatesEphemeris(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `coordinate ephemeris 🎯 for ${symbolByBody[body]}`;
-  console.debug(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const url = getCoordinatesEphemerisUrl({ body, start, end });
-  // console.debug(`🌐 Ephemeris url:`, url.toString());
+  // print(`🌐 Ephemeris url:`, url.toString());
   const text = await fetch(url.toString()).then((res) => res.text());
-  // console.debug(`🏁 Ephemeris response:`, text);
+  // print(`🏁 Ephemeris response:`, text);
   const ephemeris = parseCoordinatesEphemeris(text);
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return ephemeris;
 }
@@ -197,7 +198,7 @@ export async function getCoordinateEphemerisByBody(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `coordinate ephemerides 🎯`;
-  console.log(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const coordinateEphemerisByBody = {} as Record<Body, CoordinateEphemeris>;
 
@@ -217,7 +218,7 @@ export async function getCoordinateEphemerisByBody(args: {
     }
   }
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return coordinateEphemerisByBody;
 }
@@ -257,7 +258,7 @@ export async function getAzimuthElevationEphemeris(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `azimuth elevation ephemeris ⏫ for ${symbolByBody[body]}`;
-  console.debug(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const url = getAzimuthElevationEphemerisUrl({
     start,
@@ -265,13 +266,13 @@ export async function getAzimuthElevationEphemeris(args: {
     coordinates,
     body,
   });
-  // console.debug(`🌐 Ephemeris url:`, url.toString());
+  // print(`🌐 Ephemeris url:`, url.toString());
   const text = await fetch(url.toString()).then((res) => res.text());
-  // console.debug(`🏁 Ephemeris response:`, text);
+  // print(`🏁 Ephemeris response:`, text);
   const ephemeris = parseAzimuthElevationEphemeris(text);
-  // console.log(`🐋 ~ ephemeris:`, ephemeris);
+  // print(`🐋 ~ ephemeris:`, ephemeris);
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return ephemeris;
 }
@@ -293,7 +294,7 @@ export async function getAzimuthElevationEphemerisByBody(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `azimuth elevation ephemerides ⏫`;
-  console.log(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const azimuthElevationEphemerisByBody = {} as Record<
     Body,
@@ -308,7 +309,7 @@ export async function getAzimuthElevationEphemerisByBody(args: {
     });
   }
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return azimuthElevationEphemerisByBody;
 }
@@ -342,7 +343,7 @@ export async function getIlluminationEphemeris(args: {
   const { body, start, end, coordinates } = args;
 
   const message = `illumination ephemeris 🌕 for ${symbolByBody[body]}`;
-  console.debug(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const url = getIlluminationEphemerisUrl({
     body,
@@ -350,13 +351,13 @@ export async function getIlluminationEphemeris(args: {
     end,
     coordinates,
   });
-  // console.debug(`🌐 Ephemeris url:`, url.toString());
+  // print(`🌐 Ephemeris url:`, url.toString());
   const text = await fetch(url.toString()).then((res) => res.text());
-  // console.debug(`🏁 Ephemeris response:`, text);
+  // print(`🏁 Ephemeris response:`, text);
   const ephemeris = parseIlluminationEphemeris(text);
-  // console.log(`🐋 ~ ephemeris:`, ephemeris);
+  // print(`🐋 ~ ephemeris:`, ephemeris);
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return ephemeris;
 }
@@ -378,7 +379,7 @@ export async function getIlluminationEphemerisByBody(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `illumination ephemerides 🌕`;
-  console.log(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const illuminationEphemerisByBody = {} as Record<Body, IlluminationEphemeris>;
   for await (const body of bodies) {
@@ -390,7 +391,7 @@ export async function getIlluminationEphemerisByBody(args: {
     });
   }
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return illuminationEphemerisByBody;
 }
@@ -422,16 +423,16 @@ export async function getDiameterEphemeris(args: {
   const { start, end, body } = args;
 
   const message = `diameter ephemeris 🛟 for ${symbolByBody[body]}`;
-  console.debug(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const url = getDiameterEphemerisUrl({ start, end, body });
-  // console.debug(`🌐 Ephemeris url:`, url.toString());
+  // print(`🌐 Ephemeris url:`, url.toString());
   const text = await fetch(url.toString()).then((res) => res.text());
-  // console.debug(`🏁 Ephemeris response:`, text);
+  // print(`🏁 Ephemeris response:`, text);
   const ephemeris = parseDiameterEphemeris(text);
-  // console.log(`🐋 ~ ephemeris:`, ephemeris);
+  // print(`🐋 ~ ephemeris:`, ephemeris);
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return ephemeris;
 }
@@ -452,7 +453,7 @@ export async function getDiameterEphemerisByBody(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `diameter ephemerides 🛟`;
-  console.log(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const diameterEphemerisByBody = {} as Record<Body, DiameterEphemeris>;
   for await (const body of bodies) {
@@ -463,7 +464,7 @@ export async function getDiameterEphemerisByBody(args: {
     });
   }
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return diameterEphemerisByBody;
 }
@@ -500,16 +501,16 @@ export async function getDistanceEphemeris(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `distance ephemeris 📏 for ${symbolByBody[body]}`;
-  console.debug(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const url = getDistanceEphemerisUrl({ body, end, start });
-  // console.debug(`🌐 Ephemeris url:`, url.toString());
+  // print(`🌐 Ephemeris url:`, url.toString());
   const text = await fetch(url.toString()).then((res) => res.text());
-  // console.debug(`🏁 Ephemeris response:`, text);
+  // print(`🏁 Ephemeris response:`, text);
   const ephemeris = parseDistanceEphemeris(text);
-  // console.log(`🐋 ~ ephemeris:`, ephemeris);
+  // print(`🐋 ~ ephemeris:`, ephemeris);
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return ephemeris;
 }
@@ -530,7 +531,7 @@ export async function getDistanceEphemerisByBody(args: {
   //   .tz(end, "America/New_York")
   //   .toISOString(true)}`;
   const message = `distance ephemerides 📏`;
-  console.log(`🔭 Fetching ${message}`);
+  print(`🔭 Fetching ${message}`);
 
   const distanceEphemerisByBody = {} as Record<Body, DistanceEphemeris>;
   for await (const body of bodies) {
@@ -541,7 +542,7 @@ export async function getDistanceEphemerisByBody(args: {
     });
   }
 
-  console.debug(`🔭 Fetched ${message}`);
+  print(`🔭 Fetched ${message}`);
 
   return distanceEphemerisByBody;
 }

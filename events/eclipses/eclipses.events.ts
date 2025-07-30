@@ -4,6 +4,7 @@ import type { CoordinateEphemeris } from "../../ephemeris/ephemeris.types.ts";
 import type { DiameterEphemeris } from "../../ephemeris/ephemeris.types.ts";
 import type { Event } from "../../calendar.utilities.ts";
 import { isSolarEclipse, isLunarEclipse } from "./eclipses.utilities.ts";
+import { incrementEventsCount, print } from "../../logs.utils.tsx";
 
 export function getEclipseEvents(args: {
   currentMinute: Moment;
@@ -82,7 +83,8 @@ export function getSolarEclipseEvent(args: {
   const summary = `☀️🐉 ${description}`;
 
   const dateString = moment.tz(date, "America/New_York").toISOString(true);
-  console.log(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const solarEclipseEvent = { start: date, summary, description };
   return solarEclipseEvent;
@@ -98,7 +100,8 @@ export function getLunarEclipseEvent(args: {
   const summary = `🌙🐉 ${description}`;
 
   const dateString = moment.tz(date, "America/New_York").toISOString(true);
-  console.log(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const lunarEclipseEvent = { start: date, summary, description };
   return lunarEclipseEvent;

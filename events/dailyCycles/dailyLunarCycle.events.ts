@@ -7,6 +7,7 @@ import { getCalendar } from "../../calendar.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
 import { isRise, isSet } from "./dailyCycle.utilities.ts";
 import { isMaximum, isMinimum } from "../../math.utilities.ts";
+import { incrementEventsCount, print } from "../../logs.utils.tsx";
 
 export function getDailyLunarCycleEvents(args: {
   currentMinute: Moment;
@@ -57,7 +58,8 @@ export function getMoonriseEvent(date: Date): Event {
   const summary = `🌙 🔼 ${description}`;
 
   const dateString = moment.tz(date, "America/New_York").toISOString(true);
-  console.debug(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const moonriseEvent: Event = { start: date, summary, description };
   return moonriseEvent;
@@ -68,7 +70,8 @@ export function getLunarZenithEvent(date: Date): Event {
   const summary = `🌙 ⏫ ${description}`;
 
   const dateString = moment.tz(date, "America/New_York").toISOString(true);
-  console.debug(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const lunarZenithEvent: Event = { start: date, summary, description };
   return lunarZenithEvent;
@@ -79,7 +82,8 @@ export function getMoonsetEvent(date: Date): Event {
   const summary = `🌙 🔽 ${description}`;
 
   const dateString = moment.tz(date, "America/New_York").toISOString(true);
-  console.debug(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const moonsetEvent: Event = { start: date, summary, description };
   return moonsetEvent;
@@ -90,7 +94,8 @@ export function getLunarNadirEvent(date: Date): Event {
   const summary = `🌙 ⏬ ${description}`;
 
   const dateString = moment.tz(date, "America/New_York").toISOString(true);
-  console.debug(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const lunarNadirEvent: Event = { start: date, summary, description };
   return lunarNadirEvent;
@@ -105,7 +110,7 @@ export function writeDailyLunarCycleEvents(args: {
   if (_.isEmpty(dailyLunarCycleEvents)) return;
   const timespan = `${start.toISOString()}-${end.toISOString()}`;
   const message = `${dailyLunarCycleEvents.length} daily lunar cycle events from ${timespan}`;
-  console.log(`🌙 Writing ${message}`);
+  print(`🌙 Writing ${message}`);
 
   upsertEvents(dailyLunarCycleEvents);
 
@@ -118,5 +123,5 @@ export function writeDailyLunarCycleEvents(args: {
     new TextEncoder().encode(ingressCalendar)
   );
 
-  console.log(`🌙 Wrote ${message}`);
+  print(`🌙 Wrote ${message}`);
 }

@@ -29,5 +29,6 @@
     "timespan",
     "tredecile",
     "undecile"
-  ]
+  ],
+  "deno.enable": true
 }

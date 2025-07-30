@@ -38,6 +38,7 @@ import {
 } from "./phases.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
 import { MARGIN_MINUTES } from "../../main.ts";
+import { incrementEventsCount, print } from "../../logs.utils.tsx";
 
 export function getPlanetaryPhaseEvents(args: {
   currentMinute: Moment;
@@ -130,7 +131,8 @@ export function getVenusianPhaseEvent(args: {
   const summary: VenusianPhaseSummary = `♀️${phaseSymbol} ${description}`;
 
   const dateString = moment.tz(timestamp, "America/New_York").toISOString(true);
-  console.log(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const venusianPhaseEvent: VenusianPhaseEvent = {
     start: timestamp,
@@ -334,7 +336,8 @@ export function getMercurianPhaseEvent(args: {
   const summary: MercurianPhaseSummary = `☿${phaseSymbol} ${description}`;
 
   const dateString = moment.tz(timestamp, "America/New_York").toISOString(true);
-  console.log(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const mercurianPhaseEvent: MercurianPhaseEvent = {
     start: timestamp,
@@ -537,7 +540,8 @@ export function getMartianPhaseEvent(args: {
   const summary: MartianPhaseSummary = `♂️${phaseSymbol} ${description}`;
 
   const dateString = moment.tz(timestamp, "America/New_York").toISOString(true);
-  console.log(`${summary} at ${dateString}`);
+  print(`${summary} at ${dateString}`);
+  incrementEventsCount();
 
   const martianPhaseEvent: MartianPhaseEvent = {
     start: timestamp,
@@ -694,7 +698,7 @@ export function writePlanetaryPhaseEvents(args: {
 
   const timespan = `${start.toISOString()}-${end.toISOString()}`;
   const message = `${planetaryPhaseEvents.length} planetary phase events from ${timespan}`;
-  console.log(`🌓 Writing ${message}`);
+  print(`🌓 Writing ${message}`);
 
   upsertEvents(planetaryPhaseEvents);
 
@@ -708,5 +712,5 @@ export function writePlanetaryPhaseEvents(args: {
     new TextEncoder().encode(planetaryPhasesCalendar)
   );
 
-  console.log(`🌓 Wrote ${message}`);
+  print(`🌓 Wrote ${message}`);
 }

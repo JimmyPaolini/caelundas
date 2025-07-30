@@ -249,11 +249,6 @@ export async function getChoices() {
         return "🚫 End date must be after the start date.";
       }
 
-      // if (moment(end).diff(start, "milliseconds") < 1000 * 60 * 60 * 24 - 1) {
-      //   console.log(moment(end).diff(start, "milliseconds"));
-      //   return "🚫 End date must be at least 1 day after start date.";
-      // }
-
       return true;
     },
   });

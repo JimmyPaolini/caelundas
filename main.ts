@@ -65,6 +65,7 @@ import {
   type PlanetaryPhaseEvent,
   writePlanetaryPhaseEvents,
 } from "./events/phases/phases.events.ts";
+import { clearConsole, print, setDates } from "./logs.utils.tsx";
 
 export const MARGIN_MINUTES = 30;
 
@@ -72,7 +73,8 @@ if (import.meta.main) {
   // #region 🤔 Choices
   const choices = await getChoices();
 
-  console.info(`🤔 Input choices:`, JSON.stringify(choices));
+  clearConsole();
+  // print(`🤔 Input choices:`, JSON.stringify(choices));
 
   const {
     end,
@@ -89,6 +91,8 @@ if (import.meta.main) {
     specialtyAspectBodies,
     start,
   } = choices;
+
+  setDates({ date: start, start, end });
 
   const ephemerisBodies = shouldGetEphemeris({
     eventTypes,
@@ -110,7 +114,7 @@ if (import.meta.main) {
   ) {
     const nextDay = currentDay.clone().add(1, "day");
     const currentDayLabel = currentDay.format("YYYY-MM-DD");
-    console.log(`⏳ Processing day ${currentDayLabel}`);
+    setDates({ date: currentDay.toDate() });
 
     const signIngressEvents: SignIngressEvent[] = [];
     const decanIngressEvents: DecanIngressEvent[] = [];
@@ -323,7 +327,7 @@ if (import.meta.main) {
 
     // #region ✏️ Write Events
 
-    console.log(`📅 Writing calendar files for ${currentDayLabel}`);
+    print(`📅 Writing calendar files for ${currentDayLabel}`);
 
     const times = { start, end };
 
@@ -347,12 +351,10 @@ if (import.meta.main) {
     writeDailyLunarCycleEvents({ dailyLunarCycleEvents, ...times });
     writeTwilightEvents({ twilightEvents, ...times });
 
-    console.log(`📅 Wrote calendar files for ${currentDayLabel}`);
-
-    console.log(`⏳ Processed day ${currentDayLabel}`);
+    print(`📅 Wrote calendar files for ${currentDayLabel}`);
   }
 
-  console.info(`🔭 Caelundas from choices:`, JSON.stringify(choices));
+  print(`🔭 Caelundas from choices:`, JSON.stringify(choices));
 
   Deno.exit();
 }
