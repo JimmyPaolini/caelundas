@@ -24,7 +24,7 @@ import {
   isWinterSolstice,
 } from "./annualSolarCycle.utilities.ts";
 import { isMaximum, isMinimum } from "../../math.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 // #region 📏 Annual Solar Cycle
 

@@ -13,7 +13,7 @@ import {
 import { type Event, getCalendar } from "../../calendar.utilities.ts";
 import { getMinorAspect, isMinorAspect } from "./aspects.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 type MinorAspectDescription =
   `${Capitalize<Body>} ${MinorAspect} ${Capitalize<Body>}`;

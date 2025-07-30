@@ -38,7 +38,7 @@ import {
 } from "./phases.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
 import { MARGIN_MINUTES } from "../../main.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 export function getPlanetaryPhaseEvents(args: {
   currentMinute: Moment;

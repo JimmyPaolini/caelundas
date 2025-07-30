@@ -13,7 +13,7 @@ import {
 import { type Event, getCalendar } from "../../calendar.utilities.ts";
 import { getSpecialtyAspect, isSpecialtyAspect } from "./aspects.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 type SpecialtyAspectDescription =
   `${Capitalize<Body>} ${SpecialtyAspect} ${Capitalize<Body>}`;

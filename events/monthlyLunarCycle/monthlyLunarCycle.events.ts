@@ -10,7 +10,7 @@ import { MARGIN_MINUTES } from "../../main.ts";
 import { lunarPhases } from "../../symbols.constants.ts";
 import { isLunarPhase } from "./monthlyLunarCycle.utilities.ts";
 import { symbolByLunarPhase } from "../../symbols.constants.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 export function getMonthlyLunarCycleEvents(args: {
   currentMinute: Moment;

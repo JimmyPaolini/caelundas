@@ -4,7 +4,7 @@ import type { CoordinateEphemeris } from "../../ephemeris/ephemeris.types.ts";
 import type { DiameterEphemeris } from "../../ephemeris/ephemeris.types.ts";
 import type { Event } from "../../calendar.utilities.ts";
 import { isSolarEclipse, isLunarEclipse } from "./eclipses.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 export function getEclipseEvents(args: {
   currentMinute: Moment;

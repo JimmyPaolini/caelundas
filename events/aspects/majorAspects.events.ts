@@ -13,7 +13,7 @@ import {
 } from "../../symbols.constants.ts";
 import { upsertEvents } from "../../database.utilities.ts";
 import { getMajorAspect, isMajorAspect } from "./aspects.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 type MajorAspectDescription =
   `${Capitalize<Body>} ${MajorAspect} ${Capitalize<Body>}`;

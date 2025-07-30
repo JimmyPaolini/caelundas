@@ -16,7 +16,7 @@ import {
 import { MARGIN_MINUTES } from "../../main.ts";
 import { isDirect, isRetrograde } from "./retrogrades.utilities.ts";
 import { upsertEvents } from "../../database.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 type RetrogradeDescription =
   `${Capitalize<RetrogradeBody>} Stationary ${Capitalize<OrbitalDirection>}`;

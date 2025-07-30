@@ -13,7 +13,7 @@ import {
   isNauticalDawn,
   isNauticalDusk,
 } from "./twilights.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 export function getTwilightEvents(args: {
   currentMinute: Moment;

@@ -25,7 +25,7 @@ import {
   symbolBySign,
 } from "../../symbols.constants.ts";
 import { upsertEvents } from "../../database.utilities.ts";
-import { incrementEventsCount, print } from "../../logs.utils.tsx";
+import { incrementEventsCount, print } from "../../logs/logs.service.tsx";
 
 // #region 🪧 Signs
 

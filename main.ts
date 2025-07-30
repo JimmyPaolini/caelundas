@@ -65,7 +65,7 @@ import {
   type PlanetaryPhaseEvent,
   writePlanetaryPhaseEvents,
 } from "./events/phases/phases.events.ts";
-import { clearConsole, print, setDates } from "./logs.utils.tsx";
+import { clearConsole, print, setDates } from "./logs/logs.service.tsx";
 
 export const MARGIN_MINUTES = 30;
 

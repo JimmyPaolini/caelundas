@@ -40,7 +40,7 @@ import {
   OrbitEphemeris,
 } from "./ephemeris.types.ts";
 import { normalizeDegrees } from "../math.utilities.ts";
-import { print } from "../logs.utils.tsx";
+import { print } from "../logs/logs.service.tsx";
 
 // #region 💫 Orbit
 
