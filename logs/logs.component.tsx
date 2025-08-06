@@ -1,21 +1,9 @@
 import React from "npm:react";
-import { Box, Text, Static, Spacer } from "npm:ink";
-import { ProgressBar, ThemeProvider } from "@inkjs/ui";
+import { Box, Text, Static, Spacer, Newline } from "npm:ink";
+import { ProgressBar, Spinner, ThemeProvider } from "@inkjs/ui";
 import { theme } from "./logs.theme.ts";
 import { setupDates } from "./logs.utils.tsx";
-
-export interface Log {
-  timestamp: Date;
-  value: string;
-}
-
-export interface LogsProps {
-  date?: Date;
-  eventsCount: number;
-  logs: Log[];
-  start?: Date;
-  end?: Date;
-}
+import type { Log, LogsProps } from "./logs.types.tsx";
 
 export function Logs(props: LogsProps) {
   const { date, eventsCount, logs, start, end } = props;
@@ -25,8 +13,6 @@ export function Logs(props: LogsProps) {
     dateLabel,
     dateProgressLabel,
     dateProgressPercent,
-    daysTotal,
-    daysRemaining,
     endLabel,
     startLabel,
   } = setupDates({ date, start, end });
@@ -42,21 +28,18 @@ export function Logs(props: LogsProps) {
       <Static items={logs}>{renderLog}</Static>
       <Box flexDirection="column" borderStyle="round" paddingY={1} paddingX={2}>
         <Box marginBottom={1}>
-          <Text>Events count: {eventsCount}</Text>
-        </Box>
-        <Box>
           <Text>
-            Processing {dateLabel}, {daysRemaining} days remaining
+            📅 Count: {eventsCount} events
+            <Newline />
+            📆 Current: {dateLabel}
           </Text>
         </Box>
         <Box>
-          <Text>{dateProgressLabel} </Text>
+          <Spinner label={dateProgressLabel + " "} />
           <ProgressBar value={dateProgressPercent} />
         </Box>
         <Box>
           <Text>Start: {startLabel}</Text>
-          <Spacer />
-          <Text>Total: {daysTotal} days</Text>
           <Spacer />
           <Text>End: {endLabel}</Text>
         </Box>

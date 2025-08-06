@@ -1,6 +1,7 @@
 import React from "npm:react";
 import { render, RenderOptions } from "npm:ink";
-import { Logs, type LogsProps } from "./logs.component.tsx";
+import { Logs } from "./logs.component.tsx";
+import type { LogsProps } from "./logs.types.tsx";
 
 const logsProps: LogsProps = { eventsCount: 0, logs: [] };
 

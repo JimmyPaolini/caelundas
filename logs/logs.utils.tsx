@@ -9,17 +9,14 @@ export function setupDates(args: { date?: Date; start?: Date; end?: Date }) {
 
   const daysTotal = moment(end).diff(moment(start), "days");
   const daysElapsed = moment(date).diff(moment(start), "days");
-  const daysRemaining = moment(end).diff(moment(date), "days");
   const dateProgressPercent = (daysElapsed / daysTotal) * 100;
   const dateProgressPercentLabel = dateProgressPercent.toFixed(1);
-  const dateProgressLabel = `${daysElapsed}/${daysTotal} | ${dateProgressPercentLabel}% `;
+  const dateProgressLabel = `${dateProgressPercentLabel}% (${daysElapsed}/${daysTotal} days)`;
 
   return {
     dateLabel,
     dateProgressLabel,
     dateProgressPercent,
-    daysTotal,
-    daysRemaining,
     endLabel,
     startLabel,
   };
