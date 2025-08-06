@@ -55,7 +55,7 @@ export async function getChoices() {
   if (eventTypes.includes("ingresses")) {
     ({ ingresses } = await prompts({
       choices: ingressChoices,
-      message: "🪧 Which ingresses would you like?",
+      message: "💫 Which ingresses would you like?",
       name: "ingresses",
       type: "multiselect",
     }));
@@ -82,7 +82,7 @@ export async function getChoices() {
     if (ingresses.includes("decans")) {
       ({ decanIngressBodies } = await prompts({
         choices: bodyChoices,
-        message: "🪧 Which decan ingress bodies would you like?",
+        message: "🔟 Which decan ingress bodies would you like?",
         name: "decanIngressBodies",
         type: "multiselect",
       }));
@@ -111,7 +111,7 @@ export async function getChoices() {
   if (eventTypes.includes("aspects")) {
     ({ aspects } = await prompts({
       choices: aspectChoices,
-      message: "📐 Which aspects would you like?",
+      message: "🧭 Which aspects would you like?",
       name: "aspects",
       type: "multiselect",
     }));
@@ -137,7 +137,7 @@ export async function getChoices() {
     if (aspects.includes("minorAspects")) {
       ({ minorAspectBodies } = await prompts({
         choices: bodyChoices,
-        message: "📐 Which minor aspect bodies would you like?",
+        message: "🖇️ Which minor aspect bodies would you like?",
         name: "minorAspectBodies",
         type: "multiselect",
       }));
@@ -151,7 +151,7 @@ export async function getChoices() {
     if (aspects.includes("specialtyAspects")) {
       ({ specialtyAspectBodies } = await prompts({
         choices: bodyChoices,
-        message: "📐 Which specialty aspect bodies would you like?",
+        message: "🧮 Which specialty aspect bodies would you like?",
         name: "specialtyAspectBodies",
         type: "multiselect",
       }));
@@ -201,7 +201,7 @@ export async function getChoices() {
     eventTypes.includes("twilights")
   ) {
     ({ latitude } = await prompts({
-      message: "↩️ What latitude would you like?",
+      message: "📍 What latitude would you like?",
       name: "latitude",
       type: "number",
     }));
@@ -212,7 +212,7 @@ export async function getChoices() {
     }
 
     ({ longitude } = await prompts({
-      message: "↩️ What longitude would you like?",
+      message: "📍 What longitude would you like?",
       name: "longitude",
       type: "number",
     }));

@@ -65,16 +65,13 @@ import {
   type PlanetaryPhaseEvent,
   writePlanetaryPhaseEvents,
 } from "./events/phases/phases.events.ts";
-import { clearConsole, print, setDates } from "./logs/logs.service.tsx";
+import { initializeLogs, print, setDate } from "./logs/logs.service.tsx";
 
 export const MARGIN_MINUTES = 30;
 
 if (import.meta.main) {
-  // #region 🤔 Choices
+  // #region 🔮 Choices
   const choices = await getChoices();
-
-  clearConsole();
-  // print(`🤔 Input choices:`, JSON.stringify(choices));
 
   const {
     end,
@@ -92,7 +89,14 @@ if (import.meta.main) {
     start,
   } = choices;
 
-  setDates({ date: start, start, end });
+  initializeLogs({
+    choices,
+    date: start,
+    start,
+    end,
+    logs: [],
+    count: 0,
+  });
 
   const ephemerisBodies = shouldGetEphemeris({
     eventTypes,
@@ -114,7 +118,7 @@ if (import.meta.main) {
   ) {
     const nextDay = currentDay.clone().add(1, "day");
     const currentDayLabel = currentDay.format("YYYY-MM-DD");
-    setDates({ date: currentDay.toDate() });
+    setDate(currentDay.toDate());
 
     const signIngressEvents: SignIngressEvent[] = [];
     const decanIngressEvents: DecanIngressEvent[] = [];

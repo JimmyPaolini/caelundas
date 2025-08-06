@@ -125,6 +125,8 @@ export const phaseBodySymbols = phaseBodies.map(
   (body) => symbolByBody[body]
 ) as PhaseBodySymbol[];
 
+// #region Aspects 🧭
+
 // #region Major Aspects 📐
 
 export const symbolByMajorAspect = {

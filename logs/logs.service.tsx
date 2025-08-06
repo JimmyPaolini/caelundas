@@ -1,33 +1,31 @@
-import React from "npm:react";
+import React, { ReactNode } from "npm:react";
 import { render, RenderOptions } from "npm:ink";
 import { Logs } from "./logs.component.tsx";
-import type { LogsProps } from "./logs.types.tsx";
+import type { Log, LogsProps } from "./logs.types.tsx";
 
-const logsProps: LogsProps = { eventsCount: 0, logs: [] };
+/** @description Global state variable mutated by exported functions below */
+let logsProps: LogsProps = {};
 
-const options: RenderOptions = { exitOnCtrlC: true };
+let rerender: (node: ReactNode) => void;
 
-const { rerender, clear } = render(<Logs {...logsProps} />, options);
-
-export function clearConsole() {
-  clear();
+export function initializeLogs(props: LogsProps) {
+  logsProps = props;
+  const options: RenderOptions = { exitOnCtrlC: true };
+  ({ rerender } = render(<Logs {...logsProps} />, options));
 }
 
 export function print(...logs: string[]) {
-  const toLog = (log: string) => ({ timestamp: new Date(), value: log });
-  logsProps.logs = logsProps.logs.concat(logs.map(toLog));
+  const toLog = (log: string): Log => ({ timestamp: new Date(), value: log });
+  logsProps.logs = (logsProps.logs || []).concat(logs.map(toLog));
   rerender(<Logs {...logsProps} />);
 }
 
-export type SetDateArgs = Partial<Pick<LogsProps, "date" | "end" | "start">>;
-export function setDates(args: SetDateArgs) {
-  if (args.date) logsProps.date = args.date;
-  if (args.start) logsProps.start = args.start;
-  if (args.end) logsProps.end = args.end;
+export function setDate(date: Date) {
+  logsProps.date = date;
   rerender(<Logs {...logsProps} />);
 }
 
 export function incrementEventsCount() {
-  logsProps.eventsCount += 1;
+  logsProps.count = (logsProps.count || 0) + 1;
   rerender(<Logs {...logsProps} />);
 }

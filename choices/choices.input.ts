@@ -42,9 +42,9 @@ export const initialChoices: Choices = {
   ],
   decanIngressBodies: [
     "sun",
-    // "moon",
-    // "mercury",
-    // "venus",
+    "moon",
+    "mercury",
+    "venus",
     "mars",
     "jupiter",
     "saturn",
@@ -83,9 +83,10 @@ export const initialChoices: Choices = {
     "lunar apogee",
   ],
   aspects: [
+    //
     "majorAspects",
     "minorAspects",
-    // "specialtyAspects"
+    "specialtyAspects",
   ],
   majorAspectBodies: [
     "sun",
@@ -167,11 +168,7 @@ export const initialChoices: Choices = {
     "vesta",
     // "lunar apogee",
   ],
-  planetaryPhaseBodies: [
-    // "venus",
-    "mercury",
-    // "mars"
-  ],
+  planetaryPhaseBodies: ["venus", "mercury", "mars"],
   /** @description The Inlet */
   // latitude: 40.7128,
   // longitude: -74.006,

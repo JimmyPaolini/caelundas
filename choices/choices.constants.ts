@@ -7,7 +7,7 @@ import {
 
 export const eventTypeChoices = [
   { title: "Ingresses 💫", value: "ingresses" },
-  { title: "Aspects 📐", value: "aspects" },
+  { title: "Aspects 🧭", value: "aspects" },
   { title: "Retrogrades ↩️", value: "retrogrades" },
   {
     title: "Planetary Phases 🌓",

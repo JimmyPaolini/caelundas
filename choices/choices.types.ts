@@ -31,3 +31,5 @@ export type Choices = {
   specialtyAspectBodies: Body[];
   start: Date;
 };
+
+export interface ChoicesProps extends Choices {}

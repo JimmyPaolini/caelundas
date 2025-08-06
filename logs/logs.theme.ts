@@ -13,5 +13,13 @@ export const theme = extendTheme(defaultTheme, {
         }),
       },
     },
+    Spinner: {
+      styles: {
+        label: (): TextProps => ({
+          color: "white",
+          dimColor: true,
+        }),
+      },
+    },
   },
 });
